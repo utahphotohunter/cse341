@@ -1,17 +1,17 @@
 
 const express = require("express");
 const app = express();
-const bodyParser = require('body-parser');
+const port = process.env.PORT || 3000;
+const host = ("localhost");
+const mongoDB = require("./database/connection");
 
+app.use("/", require("./routes"));
 
-app.get("/", (req, res) => {
-  res.send("Welcome home!");
-});
-
-
-const HOST = process.env.HOST || "localhost";
-const PORT = process.env.PORT || 8080;
-
-app.listen(PORT, () => {
-  console.log(`trial app listening on ${HOST}:${PORT}`);
+mongoDB.initDb((err, mongoDB) => {
+  if (err) {
+    console.log(err);
+  } else {
+    app.listen(port);
+    console.log(`Server is running on http://${host}:${port}/contacts`);
+  }
 });
