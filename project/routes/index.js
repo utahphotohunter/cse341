@@ -11,4 +11,6 @@ routes.get('/michael', contacts.michaelRoute);
 
 routes.get('/alana', contacts.alanaRoute);
 
-module.exports = routes;
+module.exports = {
+    routes
+};
