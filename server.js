@@ -8,7 +8,7 @@ const bodyParser = require("body-parser");
 
 app
   .use(bodyParser.json())
-  .use((req, res) => {
+  .use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     next();
   })
