@@ -1,0 +1,20 @@
+// LOCALHOST
+@url = http://localhost:3000/contacts
+
+### GET all contacts
+GET {{url}}
+
+### GET specific contact 
+GET {{url}}/68d88af548ae4d9f68d84cf7
+
+### POST new contact
+POST http://localhost:3000/contacts HTTP/1.1
+content-Type: application/json
+
+{
+    "firstName": "Mitch",
+    "lastName": "Hunter",
+    "email": "mitch.h@email.net",
+    "favoriteColor": "blue",
+    "birthday": "November 20, 1997"
+}
