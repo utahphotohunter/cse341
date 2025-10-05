@@ -1,0 +1,37 @@
+// LOCALHOST
+@url = http://localhost:3000/contacts
+
+### GET all contacts
+GET {{url}}
+
+### GET specific contact 
+GET {{url}}/68e1afc206de964198757d58
+
+### POST new contact
+POST {{url}} HTTP/1.1
+content-Type: application/json
+
+{
+    "firstName": "Mitch",
+    "lastName": "Hunter",
+    "email": "mitch.h@email.net",
+    "favoriteColor": "blue",
+    "birthday": "November 20, 1997"
+}
+
+
+### PUT updated contact
+PUT {{url}}/68e1afc206de964198757d58 HTTP/1.1
+content-Type: application/json
+
+{
+    "firstName": "Mitch",
+    "lastName": "Georgy",
+    "email": "mitch.g@email.net",
+    "favoriteColor": "pink",
+    "birthday": "November 29, 2001"
+}
+
+
+### DELETE specific contact 
+DELETE {{url}}/68e1af617fb2e3d582d815d5 HTTp/1.1

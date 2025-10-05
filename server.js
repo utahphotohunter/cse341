@@ -1,11 +1,18 @@
-
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 3000;
 const host = ("localhost");
 const mongoDB = require("./database/connection");
+const bodyParser = require("body-parser");
 
-app.use("/", require("./routes"));
+
+app
+  .use(bodyParser.json())
+  .use((req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    next();
+  })
+  .use("/", require("./routes"));
 
 mongoDB.initDb((err, mongoDB) => {
   if (err) {
