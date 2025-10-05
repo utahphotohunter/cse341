@@ -31,3 +31,7 @@ content-Type: application/json
     "favoriteColor": "pink",
     "birthday": "November 29, 2001"
 }
+
+
+### DELETE specific contact 
+DELETE {{url}}/68e1af617fb2e3d582d815d5 HTTp/1.1

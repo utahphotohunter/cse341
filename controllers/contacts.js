@@ -1,8 +1,9 @@
 const mongoDB = require("../database/connection");
 const ObjectId = require("mongodb").ObjectId;
 
+// ------------------------------------------------
 // GET logic
-
+// ------------------------------------------------
 const getAll = async (req, res, next) => {
   const result = await mongoDB
     .getDb()
@@ -29,8 +30,9 @@ const getSingle = async (req, res, next) => {
   });
 };
 
+// ------------------------------------------------
 // POST logic
-
+// ------------------------------------------------
 const insertContact = async (req, res) => {
   const contact = {
     firstName: req.body.firstName,
@@ -55,8 +57,9 @@ const insertContact = async (req, res) => {
   }
 };
 
+// ------------------------------------------------
 // PUT logic
-
+// ------------------------------------------------
 const updateContact = async (req, res) => {
   const userID = new ObjectId(req.params.id);
   const contact = {
@@ -83,9 +86,36 @@ const updateContact = async (req, res) => {
   }
 };
 
+// ------------------------------------------------
+// DELETE logic
+// ------------------------------------------------
+
+const deleteContact = async (req, res) => {
+  const userID = new ObjectId(req.params.id);
+  const response = await mongoDB
+    .getDb()
+    .db("cse341")
+    .collection("contacts")
+    .deleteOne({ _id: userID }, true);
+  console.log(response);
+  if (response.deletedCount > 0) {
+    res.status(204).send();
+  } else {
+    res
+      .status(500)
+      .json(
+        response.error || "Some error occured while inserting the contact."
+      );
+  }
+};
+
+// ------------------------------------------------
+// EXPORTS
+// ------------------------------------------------
 module.exports = {
   getAll,
   getSingle,
   insertContact,
-  updateContact
+  updateContact,
+  deleteContact
 };
